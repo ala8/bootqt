@@ -3,20 +3,26 @@
 
 #include <QPushButton>
 
-#define PRIMARY "rgb(57, 129, 191)"
-#define DARK_PRIMARY "rgb(50, 115, 171)"
-#define PRESS_PRIMARY "rgb(44, 100, 148)"
+#define PRIMARY 57, 129, 191
+#define SECONDARY 108, 117, 125
+#define SUCCESS 40, 167, 69
+#define DANGER 220, 53, 69
+#define WARNING 255, 198, 28
+#define INFO 23, 162, 184
+#define LIGHT 248, 249, 250
+#define DARK 52, 58, 64
 
-class BPushButton : public QPushButton
+class BPushButton
 {
 
 public:
     QPushButton* QPush;
-    BPushButton(QWidget* parent = nullptr);
+    BPushButton(QWidget* parent = nullptr, int r = 57, int g = 129, int b = 191);
     ~BPushButton();
 
-    void bSetParent(QWidget* parent);
-    void bSeteDefaultStyles(QString style = "primary");
+    void SetParent(QWidget* parent);
+    void SeteDefaultStyles(int r, int g, int b);
+    void AppendStyleSheet(QString style);
 };
 
 #endif // BPUSHBUTTON_H

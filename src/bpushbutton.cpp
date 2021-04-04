@@ -1,7 +1,6 @@
 #include "bpushbutton.h"
-#include <QDebug>
 
-BPushButton::BPushButton(QWidget* parent)
+BPushButton::BPushButton(QWidget* parent, int r, int g, int b)
 {
     this->QPush = new QPushButton();
 
@@ -12,11 +11,11 @@ BPushButton::BPushButton(QWidget* parent)
 
     this->QPush->setText("BPushButton");
     this->QPush->resize(100, 50);
-    this->bSeteDefaultStyles("primary");
+    this->SeteDefaultStyles(r, g, b);
 }
 
 
-void BPushButton::bSetParent(QWidget* parent)
+void BPushButton::SetParent(QWidget* parent)
 {
     if (parent != nullptr)
     {
@@ -24,22 +23,46 @@ void BPushButton::bSetParent(QWidget* parent)
     }
 }
 
-void BPushButton::bSeteDefaultStyles(QString style)
+void BPushButton::SeteDefaultStyles(int r, int g, int b)
 {
+    QString normalStyle = "QPushButton {background-color: rgb(";
+    normalStyle.append(QString::number(r));
+    normalStyle.append(", ");
+    normalStyle.append(QString::number(g));
+    normalStyle.append(", ");
+    normalStyle.append(QString::number(b));
+    normalStyle.append("); border-radius: 8px; border: 1px solid #0d2133} ");
 
-    // Similar to btn btn-primary
-    if (style == "primary")
-    {
-        this->QPush->setStyleSheet(
-            "QPushButton {background-color:"
-            PRIMARY
-            "; border-radius: 8px; border: 1px solid #0d2133} QPushButton:hover { background-color:"
-            DARK_PRIMARY
-            ";} QPushButton:pressed {background-color: "
-            PRESS_PRIMARY
-            ";}"
-        );
-    }
+    QString hoverStyle = "QPushButton:hover {background-color: rgb(";
+    hoverStyle.append(QString::number(r - 15));
+    hoverStyle.append(", ");
+    hoverStyle.append(QString::number(g - 15));
+    hoverStyle.append(", ");
+    hoverStyle.append(QString::number(b - 15));
+    hoverStyle.append(");} ");
+
+    QString clickStyle = "QPushButton:pressed {background-color: rgb(";
+    clickStyle.append(QString::number(r - 25));
+    clickStyle.append(", ");
+    clickStyle.append(QString::number(g - 25));
+    clickStyle.append(", ");
+    clickStyle.append(QString::number(b - 25));
+    clickStyle.append(");}");
+
+    QString style = normalStyle;
+    style.append(hoverStyle);
+    style.append(clickStyle);
+
+    this->QPush->setStyleSheet(style);
+}
+
+void BPushButton::AppendStyleSheet(QString style)
+{
+    QString styles = this->QPush->styleSheet();
+    styles.append(" ");
+    styles.append(style);
+
+    this->QPush->update();
 }
 
 BPushButton::~BPushButton()

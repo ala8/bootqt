@@ -6,10 +6,19 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    BPushButton* bp = new BPushButton(this);
+    // BPushButton example:
 
-    connect(bp->QPush, &BPushButton::clicked, [&](){
-        QMessageBox::information(this, "BPushButton event", "Button clicked!");
+    BPushButton* bp = new BPushButton(this, SUCCESS);
+
+    // change the text of the BPushButton
+    bp->QPush->setText("Changed the text");
+
+    // resize the button
+    bp->QPush->resize(150, 50);
+
+    // how to use connect()
+    connect(bp->QPush, &QPushButton::clicked, [&]() {
+        QMessageBox::information(this, "Clicked", "BPushButton was clicked");
     });
 }
 
