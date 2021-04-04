@@ -39,18 +39,18 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     // change the text of the BPushButton
-	bp->QPush->setText("Changed the text");
+    bp->QPush->setText("Changed the text");
 
-	// resize the button
-	bp->QPush->resize(150, 50);
+    // resize the button
+    bp->QPush->resize(150, 50);
 
-	// how to use connect()
-	connect(bp->QPush, &QPushButton::clicked, [&]() {
-	    QMessageBox::information(this, "Clicked", "BPushButton was clicked");
-	});
+    // how to use connect()
+    connect(bp->QPush, &QPushButton::clicked, [&]() {
+        QMessageBox::information(this, "Clicked", "BPushButton was clicked");
+    });
 }
 ```
-You can also change the stylesheet by using ```bp->QPush->setStyleSheet()``` and if you want to append then use BPushButton has a method called ```AppendStyleSheet(QString style)``` which takes in the style that you want to append.
+You can also change the stylesheet by using ```bp->QPush->setStyleSheet()``` and if you want to append, BPushButton has a method called ```AppendStyleSheet(QString style)``` which takes in the style that you want to append.
 
 ### Designs
 These are the designs bootqt has. They are somewhat similar to the Bootstrap ones.
