@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 
-#include "src/bpushbutton.h"
+#include "src/BPushButton/bpushbutton.h"
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
