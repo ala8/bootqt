@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <src/bpushbutton.h>
 
 class MainWindow : public QMainWindow
 {

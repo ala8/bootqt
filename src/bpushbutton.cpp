@@ -10,7 +10,7 @@ BPushButton::BPushButton(QWidget* parent)
         this->QPush->setParent(parent);
     }
 
-    this->bSetText("BPushButton");
+    this->QPush->setText("BPushButton");
     this->QPush->resize(100, 50);
     this->bSeteDefaultStyles("primary");
 }
@@ -23,16 +23,26 @@ void BPushButton::bSetParent(QWidget* parent)
         this->QPush->setParent(parent);
     }
 }
-void BPushButton::bSetText(QString text)
-{
-    this->QPush->setText(text);
-}
 
 void BPushButton::bSeteDefaultStyles(QString style)
 {
-    QPalette btnPalette = this->QPush->palette();
-    btnPalette.setColor(QPalette::Button, QColor(Qt::red));
-    this->QPush->setAutoFillBackground(true);
-    this->QPush->setPalette(btnPalette);
-    this->QPush->update();
+
+    // Similar to btn btn-primary
+    if (style == "primary")
+    {
+        this->QPush->setStyleSheet(
+            "QPushButton {background-color:"
+            PRIMARY
+            "; border-radius: 8px; border: 1px solid #0d2133} QPushButton:hover { background-color:"
+            DARK_PRIMARY
+            ";} QPushButton:pressed {background-color: "
+            PRESS_PRIMARY
+            ";}"
+        );
+    }
+}
+
+BPushButton::~BPushButton()
+{
+    delete this->QPush;
 }
