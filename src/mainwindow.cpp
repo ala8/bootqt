@@ -3,6 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    BPushButton bp(this);
 }
 
 MainWindow::~MainWindow()
