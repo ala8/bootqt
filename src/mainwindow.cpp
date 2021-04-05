@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     // BPushButton example:
 
-    BPushButton* bp = new BPushButton(this, SUCCESS);
+    BPushButton* bp = new BPushButton(this, PRIMARY);
 
     // change the text of the BPushButton
     bp->QPush->setText("Changed the text");

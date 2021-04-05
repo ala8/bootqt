@@ -26,7 +26,7 @@ public:
     ~BPushButton();
 
     void SetParent(QWidget* parent);
-    void SeteDefaultStyles(int r, int g, int b);
+    void SetDefaultStyles(int r, int g, int b);
     void AppendStyleSheet(QString style);
 };
 ```
@@ -38,6 +38,8 @@ As you can see, you cannot for example use members of QPushButton through BPushB
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    BPushButton* bp = new BPushButton(this, PRIMARY);
+
     // change the text of the BPushButton
     bp->QPush->setText("Changed the text");
 

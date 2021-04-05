@@ -11,7 +11,7 @@ BPushButton::BPushButton(QWidget* parent, int r, int g, int b)
 
     this->QPush->setText("BPushButton");
     this->QPush->resize(100, 50);
-    this->SeteDefaultStyles(r, g, b);
+    this->SetDefaultStyles(r, g, b);
 }
 
 
@@ -23,7 +23,7 @@ void BPushButton::SetParent(QWidget* parent)
     }
 }
 
-void BPushButton::SeteDefaultStyles(int r, int g, int b)
+void BPushButton::SetDefaultStyles(int r, int g, int b)
 {
     QString normalStyle = "QPushButton {background-color: rgb(";
     normalStyle.append(QString::number(r));

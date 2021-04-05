@@ -21,7 +21,7 @@ public:
     ~BPushButton();
 
     void SetParent(QWidget* parent);
-    void SeteDefaultStyles(int r, int g, int b);
+    void SetDefaultStyles(int r, int g, int b);
     void AppendStyleSheet(QString style);
 };
 
