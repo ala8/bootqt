@@ -2,12 +2,18 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include "BPushButton/bpushbutton.h"
+#include "BLineEdit/blineedit.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    BPushButton* bp;
+    BLineEdit* bl;
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 };
