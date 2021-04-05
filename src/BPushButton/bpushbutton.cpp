@@ -4,10 +4,7 @@ BPushButton::BPushButton(QWidget* parent, int r, int g, int b)
 {
     this->QPush = new QPushButton();
 
-    if (parent != nullptr)
-    {
-        this->QPush->setParent(parent);
-    }
+    this->SetParent(parent);
 
     this->QPush->setText("BPushButton");
     this->QPush->resize(100, 50);

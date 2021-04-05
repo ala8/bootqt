@@ -1,7 +1,9 @@
 
+
 # bootqt
 ### This basically is a design for Qt components inspired by bootstrap. I tried making everything look like bootstrap as much as I could however there's a ton of things I couldn't add
 
+<br />
 
 ## BPushButton
 
@@ -10,9 +12,9 @@
 // NOTE: You want to create the BPushButton on the heap.
 // Otherwise it might get destroyed.
 
-BPushButton* pushButton = new BPushButton(parent, design)
+BPushButton* pushButton = new BPushButton(QWidget* parent = nullptr, design);
 // OR
-BPushButton* pushButton = new BPushButton(parent, int r, int g, int b);
+BPushButton* pushButton = new BPushButton(QWidget* parent = nullptr, int r = 57, int g = 129, int b = 191);
 ```
 
 BPushButton will create a QPushButton as a public class member called "QPush" and design it accordingly.
@@ -66,3 +68,39 @@ These are the designs bootqt has. They are somewhat similar to the Bootstrap one
 #define LIGHT 248, 249, 250
 #define DARK 52, 58, 64
 ```
+<br />
+<br />
+
+## BLineEdit
+### Usage:
+```c++
+BLineEdit* lineEdit = new BLineEdit(QWidget* parent = nullptr, QString placeholder = "");
+```
+
+Similar to BPushButton, BLineEdit will create a QLineEdit named "QLine" as a public class member. After creation it will be designed automatically.
+
+```c++
+class BLineEdit
+{
+public:
+    QLineEdit* QLine;
+
+    BLineEdit(QWidget* parent = nullptr, QString placeholder = "");
+    ~BLineEdit();
+
+    void SetParent(QWidget* parent);
+    void SetDefaultStyles();
+    void SetPlaceholder(QString placeholder);
+    void AppendStyleSheet(QString new_style);
+};
+```
+To access the QLineEdit, you have to use  ```bLineEdit->QLine```, similar to BPushButton. Here's an example:
+
+```c++
+BLineEdit* bl = new BLineEdit(this, "BLineEdit input field");
+
+// Move the lineEdit through QLine member
+bl->QLine->move(5, 60);
+```
+
+You can append to the stylesheet through ```bLineEdit->AppendStyleSheet(QString style);```. If you want to overwrite the styles, you'll have to do it via ```QLine``` member.
