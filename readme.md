@@ -111,12 +111,14 @@ You can append to the stylesheet through ```bLineEdit->AppendStyleSheet(QString 
 
 ## BNav
 ### Usage:
-```BNav* nav = new BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, DESIGN)```
+```c++
+BNav* nav = new BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, DESIGN)
+```
 
 BNav is a navigation bar that can have navigation items (basically BPushButtons but slightly edited). Items can be listed both vertically (ROW) or horizontally (COLUMN). The bar items can also be connected to a click event.
 
 BNav class:
-```
+```c++
 class BNav
 {
 
