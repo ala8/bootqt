@@ -3,7 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    this->resize(500, 350);
+    this->resize(950, 350);
 
     /*
     // BPushButton example:
@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     // BNav example
-    BNav* bn = new BNav(this, ROW, 4, PRIMARY);
+    BNav* bn = new BNav(this, ROW, 5, SUCCESS);
 }
 
 MainWindow::~MainWindow()

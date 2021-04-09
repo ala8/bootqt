@@ -20,7 +20,7 @@ void BPushButton::SetParent(QWidget* parent)
     }
 }
 
-void BPushButton::SetDefaultStyles(int r, int g, int b)
+void BPushButton::SetDefaultStyles(int r, int g, int b, int additional_styles)
 {
     QString normalStyle = "QPushButton {background-color: rgb(";
     normalStyle.append(QString::number(r));
@@ -28,7 +28,11 @@ void BPushButton::SetDefaultStyles(int r, int g, int b)
     normalStyle.append(QString::number(g));
     normalStyle.append(", ");
     normalStyle.append(QString::number(b));
-    normalStyle.append("); border-radius: 8px; border: 1px solid #0d2133} ");
+
+    if (additional_styles == NORMALBUTTON)
+        normalStyle.append("); border-radius: 8px; border: 1px solid #0d2133} ");
+   else if (additional_styles == NAVBUTTON)
+        normalStyle.append("); border: 1px solid #0d2133} ");
 
     QString hoverStyle = "QPushButton:hover {background-color: rgb(";
     hoverStyle.append(QString::number(r - 15));
@@ -60,6 +64,11 @@ void BPushButton::AppendStyleSheet(QString style)
     styles.append(style);
 
     this->QPush->update();
+}
+
+void BPushButton::SetText(QString string)
+{
+    this->QPush->setText(string);
 }
 
 BPushButton::~BPushButton()

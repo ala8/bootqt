@@ -2,10 +2,11 @@
 #define BNAV_H
 
 #include <QWidget>
-#include <QPushButton>
 #include <QMessageBox>
 #include <QSize>
 #include <vector>
+
+#include "../BPushButton/bpushbutton.h"
 
 #define COLUMN "col"
 #define ROW "row"
@@ -25,15 +26,21 @@ class BNav
 private:
 
     void m_setWidgetGeo(int width, int height);
+    void m_initNavItems();
+    void m_setDefaultWidget();
 
 public:
     QWidget* QNav;
-    std::vector<QPushButton*> navItems;
+    std::vector<BPushButton*> navItems;
+
+    int itemCount;
+    QWidget* parent;
+    QString grid;
+
+    int r, g, b;
 
     BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
     ~BNav();
-
-    void SetDefaultWidget(QWidget* parent, QString grid, QSize parentSize);
 };
 
 #endif // BNAV_H

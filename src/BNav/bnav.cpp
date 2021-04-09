@@ -1,18 +1,22 @@
 #include "bnav.h"
 
-BNav::BNav(QWidget* parent, QString grid, int itemCount, int r, int g, int b)
+BNav::BNav(QWidget* arg_parent, QString arg_grid, int arg_itemCount, int arg_r, int arg_g, int arg_b)
+    : parent(arg_parent), grid(arg_grid), itemCount(arg_itemCount), r(arg_r), g(arg_g), b(arg_b)
 {
-    this->SetDefaultWidget(parent, grid, parent->size());
+    this->m_setDefaultWidget();
+    this->m_initNavItems();
 }
 
-void BNav::SetDefaultWidget(QWidget* parent, QString grid, QSize parentSize)
+void BNav::m_setDefaultWidget()
 {
 
+    QSize parentSize = this->parent->size();
+
     // column navbar (default)
-    if (grid == COLUMN)
+    if (this->grid == COLUMN)
     {
 
-        this->QNav = new QWidget(parent);
+        this->QNav = new QWidget(this->parent);
 
         int width = parentSize.width();
         int height = parentSize.height() / 10;
@@ -23,10 +27,10 @@ void BNav::SetDefaultWidget(QWidget* parent, QString grid, QSize parentSize)
         this->m_setWidgetGeo(width, height);
 
     } // row navbar
-    else if (grid == ROW)
+    else if (this->grid == ROW)
     {
 
-        this->QNav = new QWidget(parent);
+        this->QNav = new QWidget(this->parent);
 
         int width = parentSize.width() / 5;
         int height = parentSize.height();
@@ -39,7 +43,7 @@ void BNav::SetDefaultWidget(QWidget* parent, QString grid, QSize parentSize)
     } // Invalid grid
     else
     {
-        QMessageBox::critical(parent, "BNav error", "BNav: SetDefaultWidget(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
+        QMessageBox::critical(parent, "BNav error", "BNav: m_setDefaultWidget(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
     }
 
 }
@@ -49,7 +53,49 @@ void BNav::m_setWidgetGeo(int width, int height)
     this->QNav->resize(width, height);
     this->QNav->move(0, 0);
 
-    this->QNav->setStyleSheet("background-color: red");
+    this->QNav->setStyleSheet("QWidget {background-color: red}");
+}
+
+void BNav::m_initNavItems()
+{
+    if (this->grid == COLUMN)
+    {
+
+        int btnWidth = this->parent->size().width() / this->itemCount;
+
+        for (int i = 0; i < this->itemCount; i++)
+        {
+
+            BPushButton* item = new BPushButton(this->QNav, this->r, this->g, this->b);
+            item->SetText("item");
+            item->QPush->resize(btnWidth, this->QNav->size().height());
+            item->QPush->move(btnWidth * i, this->QNav->geometry().y());
+            item->SetDefaultStyles(this->r, this->g, this->b, NAVBUTTON);
+            this->navItems.push_back(item);
+        }
+
+    }
+
+
+    else if (this->grid == ROW)
+    {
+        int btnHeight = this->parent->size().height() / this->itemCount;
+
+        for (int i = 0; i < this->itemCount; i++)
+        {
+            BPushButton* item = new BPushButton(this->QNav, this->r, this->g, this->b);
+            item->SetText("item");
+            item->QPush->resize(this->QNav->size().width(), btnHeight);
+            item->QPush->move(this->QNav->geometry().x(), btnHeight * i);
+            item->SetDefaultStyles(this->r, this->g, this->b, NAVBUTTON);
+            this->navItems.push_back(item);
+        }
+    }
+
+    else
+    {
+        QMessageBox::critical(parent, "BNav error", "BNav: m_initNavItems(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
+    }
 }
 
 BNav::~BNav()

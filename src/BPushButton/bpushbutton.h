@@ -12,6 +12,9 @@
 #define LIGHT 248, 249, 250
 #define DARK 52, 58, 64
 
+#define NORMALBUTTON 0
+#define NAVBUTTON 1
+
 class BPushButton
 {
 
@@ -21,8 +24,9 @@ public:
     ~BPushButton();
 
     void SetParent(QWidget* parent);
-    void SetDefaultStyles(int r, int g, int b);
+    void SetDefaultStyles(int r, int g, int b, int additional_styles = NORMALBUTTON);
     void AppendStyleSheet(QString style);
+    void SetText(QString string);
 };
 
 #endif // BPUSHBUTTON_H
