@@ -8,7 +8,7 @@
 #define SUCCESS 40, 167, 69
 #define DANGER 220, 53, 69
 #define WARNING 255, 198, 28
-#define INFO 23, 162, 184
+#define INFO 29, 162, 184
 #define LIGHT 248, 249, 250
 #define DARK 52, 58, 64
 

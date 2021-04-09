@@ -3,9 +3,9 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    this->resize(350, 500);
+    this->resize(500, 350);
 
-
+    /*
     // BPushButton example:
 
     this->bp = new BPushButton(this, PRIMARY);
@@ -31,6 +31,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Move the lineEdit through QLine member
     this->bl->QLine->move(5, 60);
+    */
+
+
+    // BNav example
+    BNav* bn = new BNav(this, ROW, 4, PRIMARY);
 }
 
 MainWindow::~MainWindow()

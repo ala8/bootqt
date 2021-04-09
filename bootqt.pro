@@ -10,12 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     src/BLineEdit/blineedit.cpp \
+    src/BNav/bnav.cpp \
     src/BPushButton/bpushbutton.cpp \
     src/main.cpp \
     src/mainwindow.cpp
 
 HEADERS += \
     src/BLineEdit/blineedit.h \
+    src/BNav/bnav.h \
     src/BPushButton/bpushbutton.h \
     src/mainwindow.h
 

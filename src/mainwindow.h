@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "BPushButton/bpushbutton.h"
 #include "BLineEdit/blineedit.h"
+#include "BNav/bnav.h"
 
 class MainWindow : public QMainWindow
 {
