@@ -1,4 +1,5 @@
 #include "bnav.h"
+#include <QDebug>
 
 BNav::BNav(QWidget* arg_parent, QString arg_grid, int arg_itemCount, int arg_r, int arg_g, int arg_b)
     : parent(arg_parent), grid(arg_grid), itemCount(arg_itemCount), r(arg_r), g(arg_g), b(arg_b)
@@ -43,8 +44,9 @@ void BNav::m_setDefaultWidget()
     } // Invalid grid
     else
     {
-        QMessageBox::critical(parent, "BNav error", "BNav: m_setDefaultWidget(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
+        QMessageBox::critical(this->parent, "BNav error", "BNav: m_setDefaultWidget(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
     }
+
 
 }
 
@@ -67,7 +69,7 @@ void BNav::m_initNavItems()
         {
 
             BPushButton* item = new BPushButton(this->QNav, this->r, this->g, this->b);
-            item->SetText("item");
+            item->SetText("item " + QString::number(i));
             item->QPush->resize(btnWidth, this->QNav->size().height());
             item->QPush->move(btnWidth * i, this->QNav->geometry().y());
             item->SetDefaultStyles(this->r, this->g, this->b, NAVBUTTON);
@@ -84,7 +86,7 @@ void BNav::m_initNavItems()
         for (int i = 0; i < this->itemCount; i++)
         {
             BPushButton* item = new BPushButton(this->QNav, this->r, this->g, this->b);
-            item->SetText("item");
+            item->SetText("item " + QString::number(i));
             item->QPush->resize(this->QNav->size().width(), btnHeight);
             item->QPush->move(this->QNav->geometry().x(), btnHeight * i);
             item->SetDefaultStyles(this->r, this->g, this->b, NAVBUTTON);
@@ -96,6 +98,11 @@ void BNav::m_initNavItems()
     {
         QMessageBox::critical(parent, "BNav error", "BNav: m_initNavItems(QWidget*, QString, QSize) -> Invalid grid. Use either ROW or COLUMN to fix this problem.", QMessageBox::Ok);
     }
+}
+
+void BNav::SetClickedConnection(int button_index, std::function<void()> lambda)
+{
+    this->parent->connect(this->navItems[button_index]->QPush, &QPushButton::clicked, lambda);
 }
 
 BNav::~BNav()

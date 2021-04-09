@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QSize>
 #include <vector>
+#include <QString>
+#include <functional>
 
 #include "../BPushButton/bpushbutton.h"
 
@@ -41,6 +43,8 @@ public:
 
     BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
     ~BNav();
+
+    void SetClickedConnection(int button_index, std::function<void()> lambda);
 };
 
 #endif // BNAV_H

@@ -54,7 +54,17 @@ void BPushButton::SetDefaultStyles(int r, int g, int b, int additional_styles)
     style.append(hoverStyle);
     style.append(clickStyle);
 
+    // WARNING & LIGHT
+    if (r == 255 || r == 248)
+        style.append(" QPushButton {color: black;}");
+
+    // OTHER DESIGNS
+    else
+        style.append(" QPushButton {color: white;}");
+
     this->QPush->setStyleSheet(style);
+
+
 }
 
 void BPushButton::AppendStyleSheet(QString style)

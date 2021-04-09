@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QDebug>
 #include "BPushButton/bpushbutton.h"
 #include "BLineEdit/blineedit.h"
 #include "BNav/bnav.h"

@@ -1,5 +1,6 @@
 
 
+
 # bootqt
 ### This basically is a design for Qt components inspired by bootstrap. I tried making everything look like bootstrap as much as I could however there's a ton of things I couldn't add
 
@@ -104,3 +105,46 @@ bl->QLine->move(5, 60);
 ```
 
 You can append to the stylesheet through ```bLineEdit->AppendStyleSheet(QString style);```. If you want to overwrite the styles, you'll have to do it via ```QLine``` member.
+
+<br />
+<br />
+
+## BNav
+### Usage:
+```BNav* nav = new BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, DESIGN)```
+
+BNav is a navigation bar that can have navigation items (basically BPushButtons but slightly edited). Items can be listed both vertically (ROW) or horizontally (COLUMN). The bar items can also be connected to a click event.
+
+BNav class:
+```
+class BNav
+{
+
+private:
+
+    void m_setWidgetGeo(int width, int height);
+    void m_initNavItems();
+    void m_setDefaultWidget();
+
+public:
+    QWidget* QNav;
+    std::vector<BPushButton*> navItems;
+
+    int itemCount;
+    QWidget* parent;
+    QString grid;
+
+    int r, g, b;
+
+    BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
+    ~BNav();
+
+    void SetClickedConnection(int button_index, void (*lambda)());
+};
+```
+
+``parent`` will contain the parent of the BNav. ``itemCount`` contains the number of elements (items) in the BNav and ``grid`` will determine if the items are going to listed horizontally (COLUMN) or vertically (ROW).
+
+``navItems`` is an vector of BPushButtons which are going to be the BNav items. ``QNav`` is a QWidget, basically a background or a "base" for the nav items.
+
+### Example:

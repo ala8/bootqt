@@ -34,8 +34,11 @@ MainWindow::MainWindow(QWidget *parent)
     */
 
 
+    auto lamb = [&](){ qDebug() << "oke monke";};
+
     // BNav example
-    BNav* bn = new BNav(this, ROW, 5, SUCCESS);
+    BNav* bn = new BNav(this, ROW, 5, PRIMARY);
+    bn->SetClickedConnection(0, lamb);
 }
 
 MainWindow::~MainWindow()
