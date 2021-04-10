@@ -168,6 +168,7 @@ bn->SetItemText(3, "Profile");
 bn->SetClickedConnection(0, lamb);
 ```
 outcome:
+<br />
 ![enter image description here](https://cdn.discordapp.com/attachments/732283331185475606/830347512333467679/unknown.png)
 
 Using ``SetClickedConnection(item_index, lambda)`` you can connect a nav item to a click event. If you want to connect to additional events, you'll have to do it manually with ``connect()``.
