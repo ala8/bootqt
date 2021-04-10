@@ -1,6 +1,6 @@
 #include "blineedit.h"
 
-BLineEdit::BLineEdit(QWidget* parent, QString placeholder)
+BLineEdit::BLineEdit(QWidget* parent, const QString& placeholder)
 {
     this->QLine = new QLineEdit();
     this->SetParent(parent);
@@ -34,12 +34,12 @@ void BLineEdit::SetDefaultStyles()
     this->QLine->setStyleSheet(style);
 }
 
-void BLineEdit::SetPlaceholder(QString placeholder)
+void BLineEdit::SetPlaceholder(const QString& placeholder)
 {
     this->QLine->setPlaceholderText(placeholder);
 }
 
-void BLineEdit::AppendStyleSheet(QString new_style)
+void BLineEdit::AppendStyleSheet(const QString& new_style)
 {
     QString style = this->QLine->styleSheet();
     style.append(" ");

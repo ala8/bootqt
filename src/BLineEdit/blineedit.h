@@ -8,13 +8,13 @@ class BLineEdit
 public:
     QLineEdit* QLine;
 
-    BLineEdit(QWidget* parent = nullptr, QString placeholder = "");
+    BLineEdit(QWidget* parent = nullptr, const QString& placeholder = "");
     ~BLineEdit();
 
     void SetParent(QWidget* parent);
     void SetDefaultStyles();
-    void SetPlaceholder(QString placeholder);
-    void AppendStyleSheet(QString new_style);
+    void SetPlaceholder(const QString& placeholder);
+    void AppendStyleSheet(const QString& new_style);
 };
 
 #endif // BLINEEDIT_H

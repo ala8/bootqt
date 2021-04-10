@@ -1,6 +1,7 @@
 
 
 
+
 # bootqt
 ### This basically is a design for Qt components inspired by bootstrap. I tried making everything look like bootstrap as much as I could however there's a ton of things I couldn't add
 
@@ -141,7 +142,9 @@ public:
     BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
     ~BNav();
 
-    void SetClickedConnection(int button_index, void (*lambda)());
+    void SetClickedConnection(int button_index, std::function<void()> lambda);
+    void SetParent(QWidget* parent);
+    void SetItemText(int item_index, const QString& text);
 };
 ```
 
@@ -150,3 +153,26 @@ public:
 ``navItems`` is an vector of BPushButtons which are going to be the BNav items. ``QNav`` is a QWidget, basically a background or a "base" for the nav items.
 
 ### Example:
+```c++
+auto lamb = [&](){
+    QMessageBox::information(this, "Message", "A nav item was clicked", QMessageBox::Ok);
+};
+
+BNav* bn = new BNav(this, ROW, 4, DARK);
+
+bn->SetItemText(0, "Menu");
+bn->SetItemText(1, "Create");
+bn->SetItemText(2, "Items");
+bn->SetItemText(3, "Profile");
+
+bn->SetClickedConnection(0, lamb);
+```
+outcome:
+![enter image description here](https://cdn.discordapp.com/attachments/732283331185475606/830347512333467679/unknown.png)
+
+Using ``SetClickedConnection(item_index, lambda)`` you can connect a nav item to a click event. If you want to connect to additional events, you'll have to do it manually with ``connect()``.
+
+You can change the text on the item using ``SetItemText(item_index, text)``. You can also design the item through the BPushButton vector ``navItems``. The default design of the BPushButtons will be the same design you passed into the BNav constructor.
+
+<br />
+<br />

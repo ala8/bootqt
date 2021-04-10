@@ -3,7 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    this->resize(950, 350);
+    this->resize(950, 400);
 
     /*
     // BPushButton example:
@@ -34,10 +34,18 @@ MainWindow::MainWindow(QWidget *parent)
     */
 
 
-    auto lamb = [&](){ qDebug() << "oke monke";};
-
     // BNav example
-    BNav* bn = new BNav(this, ROW, 5, PRIMARY);
+    auto lamb = [&](){
+        QMessageBox::information(this, "Message", "A nav item was clicked", QMessageBox::Ok);
+    };
+
+    BNav* bn = new BNav(this, ROW, 4, DARK);
+
+    bn->SetItemText(0, "Menu");
+    bn->SetItemText(1, "Create");
+    bn->SetItemText(2, "Items");
+    bn->SetItemText(3, "Profile");
+
     bn->SetClickedConnection(0, lamb);
 }
 

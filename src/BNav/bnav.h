@@ -35,16 +35,18 @@ public:
     QWidget* QNav;
     std::vector<BPushButton*> navItems;
 
-    int itemCount;
     QWidget* parent;
     QString grid;
+    int itemCount;
 
     int r, g, b;
 
-    BNav(QWidget* parent = nullptr, QString grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
+    BNav(QWidget* parent = nullptr, const QString& grid = COLUMN, int itemCount = 4, int r = 57, int g = 129, int b = 191);
     ~BNav();
 
     void SetClickedConnection(int button_index, std::function<void()> lambda);
+    void SetParent(QWidget* parent);
+    void SetItemText(int item_index, const QString& text);
 };
 
 #endif // BNAV_H

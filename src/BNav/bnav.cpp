@@ -1,7 +1,7 @@
 #include "bnav.h"
 #include <QDebug>
 
-BNav::BNav(QWidget* arg_parent, QString arg_grid, int arg_itemCount, int arg_r, int arg_g, int arg_b)
+BNav::BNav(QWidget* arg_parent, const QString& arg_grid, int arg_itemCount, int arg_r, int arg_g, int arg_b)
     : parent(arg_parent), grid(arg_grid), itemCount(arg_itemCount), r(arg_r), g(arg_g), b(arg_b)
 {
     this->m_setDefaultWidget();
@@ -54,8 +54,6 @@ void BNav::m_setWidgetGeo(int width, int height)
 {
     this->QNav->resize(width, height);
     this->QNav->move(0, 0);
-
-    this->QNav->setStyleSheet("QWidget {background-color: red}");
 }
 
 void BNav::m_initNavItems()
@@ -103,6 +101,16 @@ void BNav::m_initNavItems()
 void BNav::SetClickedConnection(int button_index, std::function<void()> lambda)
 {
     this->parent->connect(this->navItems[button_index]->QPush, &QPushButton::clicked, lambda);
+}
+
+void BNav::SetParent(QWidget* parent)
+{
+    this->QNav->setParent(parent);
+}
+
+void BNav::SetItemText(int item_index, const QString& text)
+{
+    this->navItems[item_index]->SetText(text);
 }
 
 BNav::~BNav()

@@ -25,8 +25,8 @@ public:
 
     void SetParent(QWidget* parent);
     void SetDefaultStyles(int r, int g, int b, int additional_styles = NORMALBUTTON);
-    void AppendStyleSheet(QString style);
-    void SetText(QString string);
+    void AppendStyleSheet(const QString& style);
+    void SetText(const QString& string);
 };
 
 #endif // BPUSHBUTTON_H

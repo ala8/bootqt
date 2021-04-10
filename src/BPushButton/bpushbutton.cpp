@@ -67,7 +67,7 @@ void BPushButton::SetDefaultStyles(int r, int g, int b, int additional_styles)
 
 }
 
-void BPushButton::AppendStyleSheet(QString style)
+void BPushButton::AppendStyleSheet(const QString& style)
 {
     QString styles = this->QPush->styleSheet();
     styles.append(" ");
@@ -76,7 +76,7 @@ void BPushButton::AppendStyleSheet(QString style)
     this->QPush->update();
 }
 
-void BPushButton::SetText(QString string)
+void BPushButton::SetText(const QString& string)
 {
     this->QPush->setText(string);
 }
