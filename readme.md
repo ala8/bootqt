@@ -3,7 +3,7 @@
 
 
 # bootqt
-### This basically is a design for Qt components inspired by bootstrap. I tried making everything look like bootstrap as much as I could however there's a ton of things I couldn't add
+#### This is a pack of predesigned Qt components and their designs are close to Bootstrap's. Bootqt has shortcuts for designed components such as buttons, input fields annd navbars. Bootqt was created to be a personal project for personal use but I decided to publish it into github for my portfolio and to work on it regularly. To wrap up, this isn't professional code nor is it the most efficient.
 
 <br />
 
