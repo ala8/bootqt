@@ -27,6 +27,8 @@ public:
     void SetDefaultStyles(int r, int g, int b, int additional_styles = NORMALBUTTON);
     void AppendStyleSheet(const QString& style);
     void SetText(const QString& string);
+    void Move(int x = 0, int y = 0);
+    void Resize(int x, int y);
 };
 
 #endif // BPUSHBUTTON_H

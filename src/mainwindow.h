@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QDebug>
+#include <Windows.h>
 #include "BPushButton/bpushbutton.h"
 #include "BLineEdit/blineedit.h"
 #include "BNav/bnav.h"
+#include "BForm/bform.h"
 
 class MainWindow : public QMainWindow
 {

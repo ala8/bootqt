@@ -81,6 +81,16 @@ void BPushButton::SetText(const QString& string)
     this->QPush->setText(string);
 }
 
+void BPushButton::Move(int x, int y)
+{
+    this->QPush->move(x, y);
+}
+
+void BPushButton::Resize(int x, int y)
+{
+    this->QPush->resize(x, y);
+}
+
 BPushButton::~BPushButton()
 {
     delete this->QPush;

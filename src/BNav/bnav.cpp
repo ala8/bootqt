@@ -115,10 +115,10 @@ void BNav::SetItemText(int item_index, const QString& text)
 
 BNav::~BNav()
 {
-    // delete the QNav widget
-    delete this->QNav;
-
     // Delete everything in the navItems vector
     for (auto item : this->navItems)
         delete item;
+
+    // delete the QNav widget
+    delete this->QNav;
 }
