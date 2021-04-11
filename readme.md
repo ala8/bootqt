@@ -2,8 +2,9 @@
 
 
 
+
 # bootqt
-#### This is a pack of predesigned Qt components and their designs are close to Bootstrap's. Bootqt has shortcuts for designed components such as buttons, input fields annd navbars. Bootqt was created to be a personal project for personal use but I decided to publish it into github for my portfolio and to work on it regularly. To wrap up, this isn't professional code nor is it the most efficient.
+#### This is a pack of predesigned Qt components and their designs are close to Bootstrap's. Bootqt has shortcuts for designed components such as buttons, input fields, navbars and forms. Bootqt was created to be a personal project for personal use but I decided to publish it into github for my portfolio and to work on it regularly. To wrap up, this isn't professional code nor is it the most efficient.
 
 <br />
 
@@ -173,7 +174,85 @@ outcome:
 
 Using ``SetClickedConnection(item_index, lambda)`` you can connect a nav item to a click event. If you want to connect to additional events, you'll have to do it manually with ``connect()``.
 
+NOTE: It's very recommended to NOT TO capture by reference, instead copy the pointers by using ``[=](){}``.
+
 You can change the text on the item using ``SetItemText(item_index, text)``. You can also design the item through the BPushButton vector ``navItems``. The default design of the BPushButtons will be the same design you passed into the BNav constructor.
 
 <br />
 <br />
+
+## BForm
+
+BForm is a responsive form class that will create and design a form automatically.
+
+### Usage:
+```c++
+BForm* form = new BForm(QWidget* parent, const QString& formTitle = "BForm", int fieldCount = 3, int width = 500, bool submit = true, SUBMIT_DESIGN = PRIMARY);
+```
+
+The constructor takes a pointer to the parent QWidget of the form, a form title, the sum fields (a field is a row with a label and an input field), the width of the form which is recommended to leave as 500, a boolean value that represents if a submit button is wanted and a design for the submit button.
+
+BForm class:
+```c++
+class BForm
+{
+private:
+    void m_initializeBGWidget();
+    void m_initializeFormComponents();
+
+public:
+    BForm(QWidget* parent, const QString& formTitle = "BForm", int fieldCount = 3, int width = 500, bool submit = true, int r = 57, int g = 129, int b = 191);
+    ~BForm();
+
+    QWidget* parent;
+    QString formTitle;
+    int fieldCount;
+    int width;
+    bool submit;
+    int r, g, b;
+
+    QWidget* background;
+    QLabel* titleLabel;
+    std::vector<QLabel*> formLabels;
+    std::vector<BLineEdit*> formInputs;
+    BPushButton* formSubmit;
+
+    void editField(int field_index, const QString& labelText, QString inputPlaceholder);
+    QString getInput(int field_index) const;
+    void connectSubmitted(std::function<void()> lambda);
+    void Move(int x = 0, int y = 0);
+    void SetBackground(int r, int g, int b);
+    QString GetFieldLabelStyleSheet(int field_index) const;
+    void SetFieldLabelStyleSheet(int field_index, const QString& styles);
+    void SetFormTitle(const QString& title);
+    QString GetFormTitleStyleSheet() const;
+    void SetFormTitleStyleSheet(const QString& styles);
+};
+```
+BForm will create a QWidget into the parent and add a title, fields and a submit button if necessary. You can get input from the input fields by using the method ``getInput(field_index)`` which takes in the index of the input field in the vector ``formInputs``. The input labels will be numbered according to each fields index.
+
+You can obviously also connect the submit button to a click event aka submission event using a lambda. You can connect everything manually but a click event method ``connectSubmitted(lambda)``.
+
+NOTE: the lambda MUST NOT capture by reference. Your application will crash. You have to use ``[=](){}`` if you want your lambda to capture.
+
+You can get and set the stylesheet of the title and the form labels through BForm's methods. You can always edit the components manually and it's recommended to check the source and how certain components are made, if you wish to make any changes manually.
+
+### Example:
+```c++
+// BForm example:
+BForm* bf = new BForm(this, "Form title", 3, 500, true, LIGHT);
+bf->Move(100, 200);
+
+bf->editField(0, "Email:", "email@example.com");
+bf->editField(1, "Username:", "username");
+bf->editField(2, "Password:", "password");
+
+bf->SetBackground(DARK);
+bf->SetFieldLabelStyleSheet(ALL, "font-size: 18px; color: white;");
+bf->SetFormTitleStyleSheet("font-size: 30px; color: white;");
+
+bf->connectSubmitted([=](){
+    QString email = bf->getInput(0);
+    QMessageBox::information(this, "form submitted", "your email is: " + email);
+});
+```
