@@ -76,9 +76,44 @@ void BPushButton::AppendStyleSheet(const QString& style)
     this->QPush->update();
 }
 
+void BPushButton::connectClicked(std::function<void ()> lambda)
+{
+    this->QPush->parent()->connect(this->QPush, &QPushButton::clicked, lambda);
+}
+
 void BPushButton::SetText(const QString& string)
 {
     this->QPush->setText(string);
+}
+
+QString BPushButton::GetText() const
+{
+    return this->QPush->text();
+}
+
+int BPushButton::x() const
+{
+    return this->QPush->x();
+}
+
+int BPushButton::y() const
+{
+    return this->QPush->y();
+}
+
+int BPushButton::Width() const
+{
+    return this->QPush->width();
+}
+
+int BPushButton::Height() const
+{
+    return this->QPush->height();
+}
+
+void BPushButton::SetGeometry(int x, int y, int width, int height)
+{
+    this->QPush->setGeometry(x, y, width, height);
 }
 
 void BPushButton::Move(int x, int y)

@@ -3,6 +3,7 @@
 
 
 
+
 # bootqt
 #### This is a pack of predesigned Qt components and their designs are close to Bootstrap's. Bootqt has shortcuts for designed components such as buttons, input fields, navbars and forms. Bootqt was created to be a personal project for personal use but I decided to publish it into github for my portfolio and to work on it regularly. To wrap up, this isn't professional code nor is it the most efficient.
 
@@ -31,8 +32,18 @@ public:
     ~BPushButton();
 
     void SetParent(QWidget* parent);
-    void SetDefaultStyles(int r, int g, int b);
-    void AppendStyleSheet(QString style);
+    void SetDefaultStyles(int r, int g, int b, int additional_styles = NORMALBUTTON);
+    void AppendStyleSheet(const QString& style);
+    void connectClicked(std::function<void ()> lambda);
+    void SetText(const QString& string);
+    QString GetText() const;
+    int x() const;
+    int y() const;
+    int Width() const;
+    int Height() const;
+    void SetGeometry(int x, int y, int width, int height);
+    void Move(int x = 0, int y = 0);
+    void Resize(int x, int y);
 };
 ```
 As you can see, you cannot for example use members of QPushButton through BPushButton. You will have to call them through ```QPush->member```. Here's an example:
@@ -51,8 +62,13 @@ MainWindow::MainWindow(QWidget *parent)
     // resize the button
     bp->QPush->resize(150, 50);
 
-    // how to use connect()
-    connect(bp->QPush, &QPushButton::clicked, [&]() {
+        // connect using BPushButton's connectClicked() method
+        bp->connectClicked([=](){
+                qDebug() << "clicked\n";
+        )	
+
+    // how to connect to an event manually.
+    connect(bp->QPush, &QPushButton::clicked, [=]() {
         QMessageBox::information(this, "Clicked", "BPushButton was clicked");
     });
 }
@@ -93,8 +109,17 @@ public:
 
     void SetParent(QWidget* parent);
     void SetDefaultStyles();
-    void SetPlaceholder(QString placeholder);
-    void AppendStyleSheet(QString new_style);
+    void SetPlaceholder(const QString& placeholder);
+    void AppendStyleSheet(const QString& new_style);
+    QString GetText() const;
+    void SetText(const QString& text);
+    int x() const;
+    int y() const;
+    int Width() const;
+    int Height() const;
+    void SetGeometry(int x, int y, int width, int height);
+    void Move(int x = 0, int y = 0);
+    void Resize(int x, int y);
 };
 ```
 To access the QLineEdit, you have to use  ```bLineEdit->QLine```, similar to BPushButton. Here's an example:
@@ -221,6 +246,11 @@ public:
     QString getInput(int field_index) const;
     void connectSubmitted(std::function<void()> lambda);
     void Move(int x = 0, int y = 0);
+    void Resize(int x, int y);
+    int x() const;
+    int y() const;
+    int Width() const;
+    int Height() const;
     void SetBackground(int r, int g, int b);
     QString GetFieldLabelStyleSheet(int field_index) const;
     void SetFieldLabelStyleSheet(int field_index, const QString& styles);

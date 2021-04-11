@@ -46,6 +46,8 @@ public:
     QString getInput(int field_index) const;
     void connectSubmitted(std::function<void()> lambda);
     void Move(int x = 0, int y = 0);
+    void Resize(int x, int y);
+
     void SetBackground(int r, int g, int b);
     QString GetFieldLabelStyleSheet(int field_index) const;
     void SetFieldLabelStyleSheet(int field_index, const QString& styles);

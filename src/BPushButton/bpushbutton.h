@@ -2,6 +2,7 @@
 #define BPUSHBUTTON_H
 
 #include <QPushButton>
+#include <functional>
 
 #define PRIMARY 57, 129, 191
 #define SECONDARY 108, 117, 125
@@ -26,7 +27,14 @@ public:
     void SetParent(QWidget* parent);
     void SetDefaultStyles(int r, int g, int b, int additional_styles = NORMALBUTTON);
     void AppendStyleSheet(const QString& style);
+    void connectClicked(std::function<void ()> lambda);
     void SetText(const QString& string);
+    QString GetText() const;
+    int x() const;
+    int y() const;
+    int Width() const;
+    int Height() const;
+    void SetGeometry(int x, int y, int width, int height);
     void Move(int x = 0, int y = 0);
     void Resize(int x, int y);
 };

@@ -82,6 +82,31 @@ void BForm::Move(int x, int y)
     this->background->move(x, y);
 }
 
+void BForm::Resize(int x, int y)
+{
+    this->background->resize(x, y);
+}
+
+int BForm::x() const
+{
+    return this->background->x();
+}
+
+int BForm::y() const
+{
+    return this->background->y();
+}
+
+int BForm::Width() const
+{
+    return this->background->width();
+}
+
+int BForm::Height() const
+{
+    return this->background->height();
+}
+
 void BForm::SetBackground(int r, int g, int b)
 {
     QString styles = "QWidget {background-color: rgb(" + QString::number(r) + ", " + QString::number(g) + ", " + QString::number(b) + "); border-radius: 15px;}";

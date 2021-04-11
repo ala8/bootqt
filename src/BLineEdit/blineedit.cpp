@@ -43,6 +43,41 @@ void BLineEdit::AppendStyleSheet(const QString& new_style)
     this->QLine->setStyleSheet(style);
 }
 
+QString BLineEdit::GetText() const
+{
+    return this->QLine->text();
+}
+
+void BLineEdit::SetText(const QString& text)
+{
+    this->QLine->setText(text);
+}
+
+int BLineEdit::x() const
+{
+    return this->QLine->x();
+}
+
+int BLineEdit::y() const
+{
+    return this->QLine->y();
+}
+
+int BLineEdit::Width() const
+{
+    return this->QLine->width();
+}
+
+int BLineEdit::Height() const
+{
+    return this->QLine->height();
+}
+
+void BLineEdit::SetGeometry(int x, int y, int width, int height)
+{
+    this->QLine->setGeometry(x, y, width, height);
+}
+
 void BLineEdit::Move(int x, int y)
 {
     this->QLine->move(x, y);
