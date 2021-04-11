@@ -56,11 +56,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     BPushButton* bp = new BPushButton(this, PRIMARY);
 
+        // get the styleSheet of BPushButton through the QPush member
+        QString styles = bp->QPush->styleSheet();
+
     // change the text of the BPushButton
-    bp->QPush->setText("Changed the text");
+    bp->SetText("Changed the text");
 
     // resize the button
-    bp->QPush->resize(150, 50);
+    bp->Resize(150, 50);
 
         // connect using BPushButton's connectClicked() method
         bp->connectClicked([=](){
@@ -127,8 +130,8 @@ To access the QLineEdit, you have to use  ```bLineEdit->QLine```, similar to BPu
 ```c++
 BLineEdit* bl = new BLineEdit(this, "BLineEdit input field");
 
-// Move the lineEdit through QLine member
-bl->QLine->move(5, 60);
+// Is the BLineEdit hidden or not
+qDebug() << bl->QLine->isHidden();
 ```
 
 You can append to the stylesheet through ```bLineEdit->AppendStyleSheet(QString style);```. If you want to overwrite the styles, you'll have to do it via ```QLine``` member.
